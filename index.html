@@ -1,1 +1,804 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tráfego Pago para Advogados - Clientes Qualificados Diariamente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '889704443432002');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=889704443432002&ev=PageView&noscript=1"/></noscript>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .popup-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .headline {
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .subheadline {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 14px;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .popup-content {
+            padding: 30px 25px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .question-step {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .question-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .question-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #0d47a1;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #1565c0;
+            box-shadow: 0 0 0 4px rgba(21, 101, 192, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: #999;
+        }
+
+        .select-field {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231565c0' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        .select-field:focus {
+            outline: none;
+            border-color: #1565c0;
+            box-shadow: 0 0 0 4px rgba(21, 101, 192, 0.1);
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover,
+        .radio-item:hover {
+            border-color: #1565c0;
+            background: rgba(21, 101, 192, 0.05);
+        }
+
+        .checkbox-item input,
+        .radio-item input {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: #1565c0;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            flex: 1;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0d47a1 0%, #1565c0 100%);
+            width: 20%;
+            transition: width 0.3s ease;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
+        }
+
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(13, 71, 161, 0.4);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-back {
+            background: white;
+            color: #1565c0;
+            border: 2px solid #1565c0;
+        }
+
+        .btn-back:hover {
+            background: rgba(21, 101, 192, 0.05);
+        }
+
+        .step-counter {
+            color: #999;
+            font-size: 13px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .success-message h2 {
+            color: #0d47a1;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .success-message p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .popup-header {
+            position: relative;
+        }
+
+        /* Mobile Otimization */
+        @media (max-width: 480px) {
+            .popup-container {
+                border-radius: 15px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .popup-header {
+                padding: 25px 15px 15px;
+            }
+
+            .headline {
+                font-size: 20px;
+            }
+
+            .subheadline {
+                font-size: 13px;
+            }
+
+            .online-badge {
+                font-size: 11px;
+            }
+
+            .popup-content {
+                padding: 25px 20px;
+                min-height: auto;
+            }
+
+            .question-label {
+                font-size: 15px;
+                margin-bottom: 18px;
+            }
+
+            .input-field,
+            .select-field {
+                padding: 13px;
+                font-size: 16px; /* Previne zoom automático no iOS */
+            }
+
+            .button-group {
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 13px;
+                font-size: 14px;
+            }
+
+            .step-counter {
+                font-size: 12px;
+            }
+
+            .logo {
+                max-width: 100px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .headline {
+                font-size: 18px;
+            }
+
+            .subheadline {
+                font-size: 12px;
+            }
+
+            .question-label {
+                font-size: 14px;
+            }
+        }
+
+        .security-badge {
+            color: #999;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 400;
+        }
+
+        .security-badge strong {
+            color: #0d47a1;
+        }
+
+        .online-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #4ade80;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+            }
+            50% {
+                opacity: 0.8;
+                box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-overlay">
+        <div class="popup-container">
+            <div class="popup-header">
+                <button class="close-btn" onclick="closePopup()">×</button>
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="logo">
+                    <!-- Base da balança -->
+                    <rect x="60" y="160" width="80" height="15" fill="#001f5c" rx="2"/>
+                    <path d="M 70 160 Q 80 150 100 150 Q 120 150 130 160" stroke="#001f5c" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- Coluna central -->
+                    <rect x="95" y="100" width="10" height="65" fill="#001f5c"/>
+                    
+                    <!-- Topo com cristal -->
+                    <polygon points="100,75 85,95 115,95" fill="#001f5c"/>
+                    <circle cx="100" cy="72" r="6" fill="#001f5c"/>
+                    
+                    <!-- Braço horizontal -->
+                    <line x1="50" y1="100" x2="150" y2="100" stroke="#001f5c" stroke-width="5" stroke-linecap="round"/>
+                    
+                    <!-- Pontos de suspensão -->
+                    <circle cx="50" cy="100" r="4" fill="#001f5c"/>
+                    <circle cx="150" cy="100" r="4" fill="#001f5c"/>
+                    
+                    <!-- Correntes esquerda -->
+                    <line x1="50" y1="100" x2="45" y2="115" stroke="#001f5c" stroke-width="2"/>
+                    <line x1="50" y1="100" x2="55" y2="115" stroke="#001f5c" stroke-width="2"/>
+                    <line x1="50" y1="100" x2="40" y2="120" stroke="#001f5c" stroke-width="2"/>
+                    <line x1="50" y1="100" x2="60" y2="120" stroke="#001f5c" stroke-width="2"/>
+                    
+                    <!-- Correntes direita -->
+                    <line x1="150" y1="100" x2="145" y2="115" stroke="#001f5c" stroke-width="2"/>
+                    <line x1="150" y1="100" x2="155" y2="115" stroke="#001f5c" stroke-width="2"/>
+                    <line x1="150" y1="100" x2="140" y2="120" stroke="#001f5c" stroke-width="2"/>
+                    <line x1="150" y1="100" x2="160" y2="120" stroke="#001f5c" stroke-width="2"/>
+                    
+                    <!-- Prato esquerdo -->
+                    <path d="M 35 125 Q 35 135 50 140 Q 65 135 65 125" fill="#001f5c" stroke="#001f5c" stroke-width="2"/>
+                    <path d="M 40 125 Q 40 132 50 136 Q 60 132 60 125" fill="none" stroke="#001f5c" stroke-width="1.5"/>
+                    
+                    <!-- Prato direito -->
+                    <path d="M 135 125 Q 135 135 150 140 Q 165 135 165 125" fill="#001f5c" stroke="#001f5c" stroke-width="2"/>
+                    <path d="M 140 125 Q 140 132 150 136 Q 160 132 160 125" fill="none" stroke="#001f5c" stroke-width="1.5"/>
+                </svg>
+                <h1 class="headline">CHEGA DE DEPENDER DE INDICAÇÃO!</h1>
+                <p class="subheadline">Aumente seus fechamentos de contratos com tráfego pago previsível e estratégico</p>
+                <div class="online-badge">
+                    <span class="online-dot"></span>
+                    <span>Especialista em Marketing Jurídico</span>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="popup-content">
+                <form id="leadForm" onsubmit="submitForm(event)">
+                    <!-- Pergunta 1: Nome -->
+                    <div class="question-step active">
+                        <label class="question-label">Como é seu nome completo?</label>
+                        <input 
+                            type="text" 
+                            name="nome" 
+                            class="input-field" 
+                            placeholder="Seu nome completo"
+                            required
+                        >
+                    </div>
+
+                    <!-- Pergunta 2: WhatsApp -->
+                    <div class="question-step">
+                        <label class="question-label">Qual seu WhatsApp?</label>
+                        <input 
+                            type="tel" 
+                            name="whatsapp" 
+                            class="input-field" 
+                            placeholder="(11) 99999-9999"
+                            required
+                        >
+                    </div>
+
+                    <!-- Pergunta 3: Estado -->
+                    <div class="question-step">
+                        <label class="question-label">Qual é seu estado?</label>
+                        <select name="estado" class="select-field" required>
+                            <option value="">Selecione seu estado</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                    <!-- Pergunta 4: Segmento -->
+                    <div class="question-step">
+                        <label class="question-label">Qual seu segmento jurídico? (pode marcar mais de um)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito Previdenciário" id="seg1">
+                                <label for="seg1">Direito Previdenciário</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito Trabalhista" id="seg2">
+                                <label for="seg2">Direito Trabalhista</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito de Trânsito" id="seg3">
+                                <label for="seg3">Direito de Trânsito</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito de Família" id="seg4">
+                                <label for="seg4">Direito de Família</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito Médico/Saúde" id="seg5">
+                                <label for="seg5">Direito Médico/Saúde</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito Digital" id="seg6">
+                                <label for="seg6">Direito Digital</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito Empresarial" id="seg7">
+                                <label for="seg7">Direito Empresarial</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito Imobiliário" id="seg8">
+                                <label for="seg8">Direito Imobiliário</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito Criminal" id="seg9">
+                                <label for="seg9">Direito Criminal</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="segmento" value="Direito Bancário" id="seg10">
+                                <label for="seg10">Direito Bancário</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta 5: Faturamento -->
+                    <div class="question-step">
+                        <label class="question-label">Qual seu faturamento mensal?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" name="faturamento" value="Até 10 Mil" id="fat1" required>
+                                <label for="fat1">Até 10 Mil</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="faturamento" value="De 10 Mil a 20 Mil" id="fat2">
+                                <label for="fat2">De 10 Mil a 20 Mil</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="faturamento" value="De 20 Mil a 50 Mil" id="fat3">
+                                <label for="fat3">De 20 Mil a 50 Mil</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="faturamento" value="De 50 Mil a 100 Mil" id="fat4">
+                                <label for="fat4">De 50 Mil a 100 Mil</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="faturamento" value="Acima de 100 Mil" id="fat5">
+                                <label for="fat5">Acima de 100 Mil</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="success-message">
+                        <div class="success-icon">✅</div>
+                        <h2>Você Está Dentro!</h2>
+                        <p>Parabéns! Sua estratégia de tráfego pago está pronta. Em breve você terá clientes QUALIFICADOS todos os dias.</p>
+                        <p style="margin-top: 15px; font-size: 12px; color: #999;">Prepare seu consultório: a chuva de clientes está chegando 💰</p>
+                    </div>
+                </form>
+
+                <div class="button-group" id="buttonGroup">
+                    <button class="btn btn-back" onclick="previousStep()" id="btnBack" style="display: none;">← Voltar</button>
+                    <button class="btn btn-next" onclick="nextStep()" id="btnNext">Próximo →</button>
+                </div>
+
+                <div class="step-counter" id="stepCounter">Pergunta 1 de 5</div>
+                <div class="security-badge">✓ Informações 100% confidenciais. Consultoria gratuita garantida.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        function showStep(step) {
+            const steps = document.querySelectorAll('.question-step');
+            steps.forEach((s, index) => {
+                s.classList.remove('active');
+                if (index + 1 === step) {
+                    s.classList.add('active');
+                }
+            });
+
+            // Atualiza botões
+            document.getElementById('btnBack').style.display = step === 1 ? 'none' : 'block';
+            
+            // Valida o passo anterior para habilitar próximo
+            validateCurrentStep();
+
+            // Atualiza progress bar
+            const progress = (step / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            // Atualiza contador
+            document.getElementById('stepCounter').textContent = `Pergunta ${step} de ${totalSteps}`;
+
+            // Muda texto do botão no último passo
+            if (step === totalSteps) {
+                document.getElementById('btnNext').textContent = 'Enviar ✉️';
+            } else {
+                document.getElementById('btnNext').textContent = 'Próximo →';
+            }
+
+            // Scroll para o topo no mobile
+            document.querySelector('.popup-content').scrollTop = 0;
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                submitForm(new Event('submit'));
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function validateCurrentStep() {
+            const btn = document.getElementById('btnNext');
+            let isValid = false;
+
+            if (currentStep === 1) {
+                const nome = document.querySelector('input[name="nome"]').value.trim();
+                isValid = nome.length > 0;
+            } else if (currentStep === 2) {
+                const whatsapp = document.querySelector('input[name="whatsapp"]').value.trim();
+                isValid = whatsapp.length > 0;
+            } else if (currentStep === 3) {
+                const estado = document.querySelector('select[name="estado"]').value;
+                isValid = estado !== '';
+            } else if (currentStep === 4) {
+                const checkboxes = document.querySelectorAll('input[name="segmento"]:checked');
+                isValid = checkboxes.length > 0;
+            } else if (currentStep === 5) {
+                const radios = document.querySelectorAll('input[name="faturamento"]:checked');
+                isValid = radios.length > 0;
+            }
+
+            btn.disabled = !isValid;
+        }
+
+        // Adiciona listeners para validação em tempo real
+        document.addEventListener('change', validateCurrentStep);
+        document.addEventListener('input', validateCurrentStep);
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            // Coleta os dados
+            const nome = document.querySelector('input[name="nome"]').value;
+            const whatsapp = document.querySelector('input[name="whatsapp"]').value;
+            const estado = document.querySelector('select[name="estado"]').value;
+            const segmentos = Array.from(document.querySelectorAll('input[name="segmento"]:checked'))
+                .map(cb => cb.value)
+                .join(', ');
+            const faturamento = document.querySelector('input[name="faturamento"]:checked').value;
+
+            // Prepara o email
+            const emailData = {
+                nome,
+                whatsapp,
+                estado,
+                segmentos,
+                faturamento,
+                data: new Date().toLocaleString('pt-BR')
+            };
+
+            // Envia via Formspree
+            fetch('https://formspree.io/f/mzebrreb', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(emailData)
+            }).then(() => {
+                // Track conversão no Facebook Pixel
+                fbq('track', 'Lead');
+
+                // Mostra mensagem de sucesso
+                document.getElementById('buttonGroup').style.display = 'none';
+                document.getElementById('stepCounter').style.display = 'none';
+                document.querySelector('.security-badge').style.display = 'none';
+                document.querySelector('.success-message').classList.add('active');
+            }).catch(err => {
+                console.error('Erro:', err);
+                alert('Houve um erro. Tente novamente.');
+            });
+        }
+
+        // Inicializa
+        showStep(1);
+
+        function closePopup() {
+            document.querySelector('.popup-overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
