@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado! - Tráfego Pago para Advogados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect x='60' y='160' width='80' height='15' fill='%23D4AF37' rx='2'/%3E%3Cpath d='M 70 160 Q 80 150 100 150 Q 120 150 130 160' stroke='%23D4AF37' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Crect x='95' y='100' width='10' height='65' fill='%23D4AF37'/%3E%3Cpolygon points='100,75 85,95 115,95' fill='%23D4AF37'/%3E%3Ccircle cx='100' cy='72' r='6' fill='%23D4AF37'/%3E%3Cline x1='50' y1='100' x2='150' y2='100' stroke='%23D4AF37' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='100' r='4' fill='%23D4AF37'/%3E%3Ccircle cx='150' cy='100' r='4' fill='%23D4AF37'/%3E%3Cline x1='50' y1='100' x2='45' y2='115' stroke='%23D4AF37' stroke-width='2'/%3E%3Cline x1='50' y1='100' x2='55' y2='115' stroke='%23D4AF37' stroke-width='2'/%3E%3Cline x1='50' y1='100' x2='40' y2='120' stroke='%23D4AF37' stroke-width='2'/%3E%3Cline x1='50' y1='100' x2='60' y2='120' stroke='%23D4AF37' stroke-width='2'/%3E%3Cline x1='150' y1='100' x2='145' y2='115' stroke='%23D4AF37' stroke-width='2'/%3E%3Cline x1='150' y1='100' x2='155' y2='115' stroke='%23D4AF37' stroke-width='2'/%3E%3Cline x1='150' y1='100' x2='140' y2='120' stroke='%23D4AF37' stroke-width='2'/%3E%3Cline x1='150' y1='100' x2='160' y2='120' stroke='%23D4AF37' stroke-width='2'/%3E%3Cpath d='M 35 125 Q 35 135 50 140 Q 65 135 65 125' fill='%23D4AF37' stroke='%23D4AF37' stroke-width='2'/%3E%3Cpath d='M 40 125 Q 40 132 50 136 Q 60 132 60 125' fill='none' stroke='%23D4AF37' stroke-width='1.5'/%3E%3Cpath d='M 135 125 Q 135 135 150 140 Q 165 135 165 125' fill='%23D4AF37' stroke='%23D4AF37' stroke-width='2'/%3E%3Cpath d='M 140 125 Q 140 132 150 136 Q 160 132 160 125' fill='none' stroke='%23D4AF37' stroke-width='1.5'/%3E%3C/svg%3E">
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '889704443432002');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=889704443432002&ev=PageView&noscript=1"/></noscript>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1410 0%, #2d2420 50%, #1a1410 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect x=%2260%22 y=%22160%22 width=%2280%22 height=%2215%22 fill=%22%23D4AF37%22 rx=%222%22/%3E%3C/svg%3E');
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2d2420 0%, #3d3430 100%);
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 140px;
+            margin: 0 auto 25px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .content {
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        /* Animação de Checkmark - Estilo Prova Online */
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkmark-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366 0%, #20BA5B 100%);
+            position: relative;
+            animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkmark-circle svg {
+            width: 60px;
+            height: 60px;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes strokeDraw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .checkmark-path {
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: strokeDraw 0.5s ease-out 0.3s forwards;
+        }
+
+        .content h2 {
+            color: #25D366;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .content p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .content p:last-of-type {
+            margin-bottom: 35px;
+        }
+
+        .subtitle {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #25D366 0%, #20BA5B 100%);
+            padding: 18px 25px;
+            border-radius: 10px;
+            line-height: 1.6;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .arrow-down {
+            font-size: 24px;
+            margin-bottom: 25px;
+            display: block;
+            animation: bounce-arrow 2s infinite;
+        }
+
+        @keyframes bounce-arrow {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(8px);
+                opacity: 0.7;
+            }
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #25D366 0%, #20BA5B 100%);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: whatsappGlow 2s infinite;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: none;
+        }
+
+        @keyframes whatsappGlow {
+            0%, 100% {
+                box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 6px 35px rgba(37, 211, 102, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                filter: brightness(1.05);
+            }
+        }
+
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer p {
+            color: #999;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* Mobile Responsividade */
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .header p {
+                font-size: 13px;
+            }
+
+            .logo {
+                max-width: 110px;
+            }
+
+            .content {
+                padding: 35px 25px;
+            }
+
+            .checkmark-circle {
+                width: 90px;
+                height: 90px;
+            }
+
+            .checkmark-circle svg {
+                width: 50px;
+                height: 50px;
+            }
+
+            .content h2 {
+                font-size: 26px;
+                margin-bottom: 12px;
+            }
+
+            .content p {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+                padding: 16px 20px;
+                margin-bottom: 20px;
+            }
+
+            .whatsapp-button {
+                width: 100%;
+                padding: 16px 20px;
+                font-size: 16px;
+                gap: 10px;
+            }
+
+            .whatsapp-icon {
+                width: 22px;
+                height: 22px;
+            }
+
+            .arrow-down {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header {
+                padding: 30px 15px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            .logo {
+                max-width: 100px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .checkmark-circle {
+                width: 80px;
+                height: 80px;
+            }
+
+            .checkmark-circle svg {
+                width: 45px;
+                height: 45px;
+            }
+
+            .content h2 {
+                font-size: 24px;
+            }
+
+            .content p {
+                font-size: 14px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+                padding: 14px 16px;
+            }
+
+            .whatsapp-button {
+                padding: 14px 16px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="logo">
+                <!-- Base da balança -->
+                <rect x="60" y="160" width="80" height="15" fill="#D4AF37" rx="2"/>
+                <path d="M 70 160 Q 80 150 100 150 Q 120 150 130 160" stroke="#D4AF37" stroke-width="4" fill="none" stroke-linecap="round"/>
+                
+                <!-- Coluna central -->
+                <rect x="95" y="100" width="10" height="65" fill="#D4AF37"/>
+                
+                <!-- Topo com cristal -->
+                <polygon points="100,75 85,95 115,95" fill="#D4AF37"/>
+                <circle cx="100" cy="72" r="6" fill="#D4AF37"/>
+                
+                <!-- Braço horizontal -->
+                <line x1="50" y1="100" x2="150" y2="100" stroke="#D4AF37" stroke-width="5" stroke-linecap="round"/>
+                
+                <!-- Pontos de suspensão -->
+                <circle cx="50" cy="100" r="4" fill="#D4AF37"/>
+                <circle cx="150" cy="100" r="4" fill="#D4AF37"/>
+                
+                <!-- Correntes esquerda -->
+                <line x1="50" y1="100" x2="45" y2="115" stroke="#D4AF37" stroke-width="2"/>
+                <line x1="50" y1="100" x2="55" y2="115" stroke="#D4AF37" stroke-width="2"/>
+                <line x1="50" y1="100" x2="40" y2="120" stroke="#D4AF37" stroke-width="2"/>
+                <line x1="50" y1="100" x2="60" y2="120" stroke="#D4AF37" stroke-width="2"/>
+                
+                <!-- Correntes direita -->
+                <line x1="150" y1="100" x2="145" y2="115" stroke="#D4AF37" stroke-width="2"/>
+                <line x1="150" y1="100" x2="155" y2="115" stroke="#D4AF37" stroke-width="2"/>
+                <line x1="150" y1="100" x2="140" y2="120" stroke="#D4AF37" stroke-width="2"/>
+                <line x1="150" y1="100" x2="160" y2="120" stroke="#D4AF37" stroke-width="2"/>
+                
+                <!-- Prato esquerdo -->
+                <path d="M 35 125 Q 35 135 50 140 Q 65 135 65 125" fill="#D4AF37" stroke="#D4AF37" stroke-width="2"/>
+                <path d="M 40 125 Q 40 132 50 136 Q 60 132 60 125" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                
+                <!-- Prato direito -->
+                <path d="M 135 125 Q 135 135 150 140 Q 165 135 165 125" fill="#D4AF37" stroke="#D4AF37" stroke-width="2"/>
+                <path d="M 140 125 Q 140 132 150 136 Q 160 132 160 125" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+            </svg>
+            <h1>Obrigado pela Confiança! 🙏</h1>
+            <p>Seu cadastro foi recebido com sucesso</p>
+        </div>
+
+        <div class="content">
+            <div class="success-icon">
+                <div class="checkmark-circle">
+                    <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+                        <path class="checkmark-path" d="M16 25.5l8.5 8.5L35.5 17" 
+                              stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <h2>Enviado com sucesso! 🚀</h2>
+            <p>Parabéns pela sua decisão, nosso time comercial entrará em contato em breve.</p>
+            <p>Prepare seu escritório: novos clientes estão a caminho 💰</p>
+            
+            <p class="subtitle">📞 Para falar diretamente com nosso time comercial, clique no botão abaixo.</p>
+            <span class="arrow-down">↓</span>
+            
+            <a href="https://wa.me/5581976279584?text=Ol%C3%A1!%20Preenchi%20o%20formul%C3%A1rio%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20servi%C3%A7o%20de%20tr%C3%A1fego%20pago%20para%20advogados." target="_blank" class="whatsapp-button">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.227.675 4.291 1.826 6.031L0 24l6.181-1.754A12 12 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.597-.42-5.148-1.173l-.369-.195-3.832 1.088 1.104-3.878-.195-.369C1.42 15.597 1 13.848 1 12 1 6.477 6.477 2 12 2s11 4.477 11 11-4.477 10-11 10z"/>
+                    <path d="M17.4 14.6c-.3-.15-1.8-.9-2.1-1-.3-.15-.5-.2-.7.2-.2.4-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.15-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.15-.6.15-.15.3-.4.45-.6.15-.2.2-.3.3-.5.1-.2 0-.4-.05-.5-.05-.15-.5-1.2-.7-1.65-.2-.4-.3-.35-.5-.35h-.6c-.2 0-.5.1-.75.35-.25.25-.95 1-1 2.05 0 1 .3 2.1.95 3.4.65 1.3 2.1 2.8 3.75 3.6 1.65.8 2.45.85 3.25.8.8-.05 1.5-.3 2-.8.5-.5.85-1.1 1.05-1.7.2-.6.2-.95.2-1.15 0-.3-.1-.5-.35-.6z"/>
+                </svg>
+                Falar com o Time Comercial
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>✓ Informações 100% confidenciais</p>
+        </div>
+    </div>
+</body>
+</html>
