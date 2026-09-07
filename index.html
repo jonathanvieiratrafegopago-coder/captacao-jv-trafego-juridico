@@ -124,7 +124,7 @@
 
         .popup-content {
             padding: 30px 25px;
-            min-height: 300px;
+            min-height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -310,7 +310,7 @@
         .success-message {
             display: none;
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px 0;
         }
 
         .success-message.active {
@@ -319,7 +319,8 @@
 
         .success-icon {
             font-size: 60px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            display: block;
         }
 
         .success-message h2 {
@@ -416,6 +417,13 @@
             .logo {
                 max-width: 100px;
             }
+
+            .whatsapp-button {
+                width: 100%;
+                padding: 16px 20px;
+                font-size: 15px;
+                margin-top: 20px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -428,6 +436,11 @@
             }
 
             .question-label {
+                font-size: 14px;
+            }
+
+            .whatsapp-button {
+                padding: 14px 16px;
                 font-size: 14px;
             }
         }
@@ -472,6 +485,55 @@
             50% {
                 opacity: 0.8;
                 box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3);
+            }
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25D366 0%, #20BA5B 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: whatsappPulse 2s infinite;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            margin-top: 25px;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+            animation: none;
+        }
+
+        @keyframes whatsappPulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        .arrow-down {
+            font-size: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(5px);
             }
         }
     </style>
@@ -546,7 +608,19 @@
                         >
                     </div>
 
-                    <!-- Pergunta 2: WhatsApp -->
+                    <!-- Pergunta 2: Email -->
+                    <div class="question-step">
+                        <label class="question-label">Qual é seu melhor email?</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            class="input-field" 
+                            placeholder="seu@email.com"
+                            required
+                        >
+                    </div>
+
+                    <!-- Pergunta 3: WhatsApp -->
                     <div class="question-step">
                         <label class="question-label">Qual seu WhatsApp?</label>
                         <input 
@@ -554,11 +628,12 @@
                             name="whatsapp" 
                             class="input-field" 
                             placeholder="(11) 99999-9999"
+                            pattern="[0-9\s\-\(\)]+"
                             required
                         >
                     </div>
 
-                    <!-- Pergunta 3: Estado -->
+                    <!-- Pergunta 4: Estado -->
                     <div class="question-step">
                         <label class="question-label">Qual é seu estado?</label>
                         <select name="estado" class="select-field" required>
@@ -593,7 +668,7 @@
                         </select>
                     </div>
 
-                    <!-- Pergunta 4: Segmento -->
+                    <!-- Pergunta 5: Segmento -->
                     <div class="question-step">
                         <label class="question-label">Qual seu segmento jurídico? (pode marcar mais de um)</label>
                         <div class="checkbox-group">
@@ -640,7 +715,7 @@
                         </div>
                     </div>
 
-                    <!-- Pergunta 5: Faturamento -->
+                    <!-- Pergunta 6: Faturamento -->
                     <div class="question-step">
                         <label class="question-label">Qual seu faturamento mensal?</label>
                         <div class="radio-group">
@@ -671,7 +746,14 @@
                         <div class="success-icon">✅</div>
                         <h2>Enviado com sucesso! 🚀</h2>
                         <p>Parabéns pela sua decisão, nosso time comercial entrará em contato em breve.</p>
-                        <p style="margin-top: 15px; font-size: 12px; color: #999;">Prepare seu escritório: novos clientes estão a caminho 💰</p>
+                        <p style="margin-top: 15px; margin-bottom: 0;">Prepare seu escritório: novos clientes estão a caminho 💰</p>
+                        <p style="margin-top: 25px; font-size: 14px; color: #666; line-height: 1.6;">Para falar diretamente com nosso time comercial, clique no botão abaixo.</p>
+                        <div style="text-align: center; margin-top: 5px;">
+                            <span class="arrow-down">↓</span>
+                        </div>
+                        <a href="https://wa.me/5581976279584?text=Ol%C3%A1!%20Preenchi%20o%20formul%C3%A1rio%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20servi%C3%A7o%20de%20tr%C3%A1fego%20pago%20para%20advogados." target="_blank" class="whatsapp-button">
+                            💬 Falar com o Time Comercial
+                        </a>
                     </div>
                 </form>
 
@@ -688,7 +770,7 @@
 
     <script>
         let currentStep = 1;
-        const totalSteps = 5;
+        const totalSteps = 6;
 
         function showStep(step) {
             const steps = document.querySelectorAll('.question-step');
@@ -747,15 +829,18 @@
                 const nome = document.querySelector('input[name="nome"]').value.trim();
                 isValid = nome.length > 0;
             } else if (currentStep === 2) {
+                const email = document.querySelector('input[name="email"]').value.trim();
+                isValid = email.length > 0 && email.includes('@');
+            } else if (currentStep === 3) {
                 const whatsapp = document.querySelector('input[name="whatsapp"]').value.trim();
                 isValid = whatsapp.length > 0;
-            } else if (currentStep === 3) {
+            } else if (currentStep === 4) {
                 const estado = document.querySelector('select[name="estado"]').value;
                 isValid = estado !== '';
-            } else if (currentStep === 4) {
+            } else if (currentStep === 5) {
                 const checkboxes = document.querySelectorAll('input[name="segmento"]:checked');
                 isValid = checkboxes.length > 0;
-            } else if (currentStep === 5) {
+            } else if (currentStep === 6) {
                 const radios = document.querySelectorAll('input[name="faturamento"]:checked');
                 isValid = radios.length > 0;
             }
@@ -767,11 +852,24 @@
         document.addEventListener('change', validateCurrentStep);
         document.addEventListener('input', validateCurrentStep);
 
+        // Filtro de números apenas para WhatsApp
+        document.querySelector('input[name="whatsapp"]').addEventListener('input', function(e) {
+            // Remove qualquer caractere que não seja número, parêntese, hífen ou espaço
+            this.value = this.value.replace(/[^0-9\s\-\(\)]/g, '');
+            validateCurrentStep();
+        });
+
+        // Validação de email em tempo real
+        document.querySelector('input[name="email"]').addEventListener('input', function(e) {
+            validateCurrentStep();
+        });
+
         function submitForm(event) {
             event.preventDefault();
 
             // Coleta os dados
             const nome = document.querySelector('input[name="nome"]').value;
+            const email = document.querySelector('input[name="email"]').value;
             const whatsapp = document.querySelector('input[name="whatsapp"]').value;
             const estado = document.querySelector('select[name="estado"]').value;
             const segmentos = Array.from(document.querySelectorAll('input[name="segmento"]:checked'))
@@ -782,6 +880,7 @@
             // Prepara o email
             const emailData = {
                 nome,
+                email,
                 whatsapp,
                 estado,
                 segmentos,
@@ -800,11 +899,8 @@
                 // Track conversão no Facebook Pixel
                 fbq('track', 'Lead');
 
-                // Mostra mensagem de sucesso
-                document.getElementById('buttonGroup').style.display = 'none';
-                document.getElementById('stepCounter').style.display = 'none';
-                document.querySelector('.security-badge').style.display = 'none';
-                document.querySelector('.success-message').classList.add('active');
+                // Redireciona para página de obrigado
+                window.location.href = 'obrigado.html';
             }).catch(err => {
                 console.error('Erro:', err);
                 alert('Houve um erro. Tente novamente.');
