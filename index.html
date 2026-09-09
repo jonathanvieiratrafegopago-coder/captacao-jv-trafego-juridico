@@ -769,6 +769,11 @@
     </div>
 
     <script>
+        // URL do Web App do Google Apps Script (planilha).
+        // Gere essa URL seguindo o passo a passo enviado junto com este arquivo
+        // e cole aqui antes de publicar.
+        const GOOGLE_SHEETS_URL = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+
         let currentStep = 1;
         const totalSteps = 6;
 
@@ -888,22 +893,31 @@
                 data: new Date().toLocaleString('pt-BR')
             };
 
-            // Envia via Formspree
-            fetch('https://formspree.io/f/mzebrreb', {
+            // Envia via Formspree (e-mail)
+            const enviarFormspree = fetch('https://formspree.io/f/mzebrreb', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(emailData)
-            }).then(() => {
+            });
+
+            // Envia para a planilha do Google Sheets (via Apps Script)
+            // mode: 'no-cors' porque o Apps Script não devolve cabeçalhos CORS;
+            // não dá pra ler a resposta, mas o dado chega e é gravado na planilha.
+            const enviarPlanilha = fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(emailData)
+            });
+
+            // Aguarda os dois envios (allSettled: mesmo que um falhe, o outro segue)
+            Promise.allSettled([enviarFormspree, enviarPlanilha]).then(() => {
                 // Track conversão no Facebook Pixel
                 fbq('track', 'Lead');
 
                 // Redireciona para página de obrigado
                 window.location.href = 'obrigado.html';
-            }).catch(err => {
-                console.error('Erro:', err);
-                alert('Houve um erro. Tente novamente.');
             });
         }
 
