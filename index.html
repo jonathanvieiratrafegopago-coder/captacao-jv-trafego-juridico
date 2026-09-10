@@ -881,41 +881,43 @@
             document.getElementById('btnNext').disabled = true;
             document.getElementById('btnNext').textContent = 'Enviando...';
 
-            // Cria FormData (compatível com Formspree)
-            const formData = new FormData();
-            formData.append('nome', nome);
-            formData.append('email', email);
-            formData.append('whatsapp', whatsapp);
-            formData.append('estado', estado);
-            formData.append('segmentos', segmentos);
-            formData.append('faturamento', faturamento);
-            formData.append('data', new Date().toLocaleString('pt-BR'));
+            // Prepara os dados em JSON
+            const leadData = {
+                nome: nome,
+                email: email,
+                whatsapp: whatsapp,
+                estado: estado,
+                segmentos: segmentos,
+                faturamento: faturamento,
+                data: new Date().toLocaleString('pt-BR')
+            };
 
-            // Envia via Formspree (FormData funciona melhor em anúncios)
-            fetch('https://formspree.io/f/mzebrreb', {
+            // Envia para Google Apps Script (funciona em iframes do Meta Ads)
+            fetch('https://script.google.com/macros/s/AKfycbwRp-QT84r7w0pm9v089S6EjMz0WRaAx4sgfYEOHoz1Lyvh0WHlxsbz-uD7doKq69_SEA/exec', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(leadData),
+                mode: 'no-cors'  // Importante para funcionar em iframes
             })
             .then(response => {
-                if (response.ok) {
-                    // Track conversão no Facebook Pixel PRIMEIRO
-                    fbq('track', 'Lead');
-                    
-                    // Aguarda um pouco para o Pixel registrar
-                    setTimeout(() => {
-                        // Redireciona para página de obrigado
-                        window.location.href = 'obrigado.html';
-                    }, 500);
-                } else {
-                    throw new Error('Erro no servidor');
-                }
+                // Track conversão no Facebook Pixel
+                fbq('track', 'Lead');
+                
+                // Aguarda um pouco para o Pixel registrar
+                setTimeout(() => {
+                    // Redireciona para página de obrigado
+                    window.location.href = 'obrigado.html';
+                }, 500);
             })
             .catch(err => {
                 console.error('Erro ao enviar:', err);
-                // Reabilita o botão em caso de erro
-                document.getElementById('btnNext').disabled = false;
-                document.getElementById('btnNext').textContent = 'Enviar ✉️';
-                alert('⚠️ Houve um erro ao enviar os dados. Tente novamente.');
+                // Mesmo com erro, dispara o pixel e redireciona
+                fbq('track', 'Lead');
+                setTimeout(() => {
+                    window.location.href = 'obrigado.html';
+                }, 500);
             });
         }
 
