@@ -892,29 +892,45 @@
                 data: new Date().toLocaleString('pt-BR')
             };
 
-            // Envia para Google Apps Script (funciona em iframes do Meta Ads)
+            // Tenta enviar via POST primeiro (para navegador normal)
             fetch('https://script.google.com/macros/s/AKfycbwRp-QT84r7w0pm9v089S6EjMz0WRaAx4sgfYEOHoz1Lyvh0WHlxsbz-uD7doKq69_SEA/exec', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(leadData),
-                mode: 'no-cors'  // Importante para funcionar em iframes
+                mode: 'no-cors'
             })
             .then(response => {
-                // Track conversão no Facebook Pixel
+                // Sucesso!
                 fbq('track', 'Lead');
-                
-                // Aguarda um pouco para o Pixel registrar
                 setTimeout(() => {
-                    // Redireciona para página de obrigado
                     window.location.href = 'obrigado.html';
                 }, 500);
             })
             .catch(err => {
-                console.error('Erro ao enviar:', err);
-                // Mesmo com erro, dispara o pixel e redireciona
+                // Se POST falhar (no Meta Ads), usa sendBeacon com GET
+                console.log('POST falhou, tentando beacon...');
+                
+                const params = new URLSearchParams({
+                    nome: nome,
+                    email: email,
+                    whatsapp: whatsapp,
+                    estado: estado,
+                    segmentos: segmentos,
+                    faturamento: faturamento,
+                    data: new Date().toLocaleString('pt-BR')
+                });
+                
+                const beaconUrl = 'https://script.google.com/macros/s/AKfycbwRp-QT84r7w0pm9v089S6EjMz0WRaAx4sgfYEOHoz1Lyvh0WHlxsbz-uD7doKq69_SEA/exec?' + params.toString();
+                
+                // sendBeacon funciona mesmo em iframes do Meta
+                navigator.sendBeacon(beaconUrl);
+                
+                // Track conversão
                 fbq('track', 'Lead');
+                
+                // Redireciona para página de obrigado
                 setTimeout(() => {
                     window.location.href = 'obrigado.html';
                 }, 500);
