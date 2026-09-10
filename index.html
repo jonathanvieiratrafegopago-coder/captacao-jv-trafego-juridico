@@ -769,11 +769,6 @@
     </div>
 
     <script>
-        // URL do Web App do Google Apps Script (planilha).
-        // Gere essa URL seguindo o passo a passo enviado junto com este arquivo
-        // e cole aqui antes de publicar.
-        const GOOGLE_SHEETS_URL = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
-
         let currentStep = 1;
         const totalSteps = 6;
 
@@ -882,42 +877,45 @@
                 .join(', ');
             const faturamento = document.querySelector('input[name="faturamento"]:checked').value;
 
-            // Prepara o email
-            const emailData = {
-                nome,
-                email,
-                whatsapp,
-                estado,
-                segmentos,
-                faturamento,
-                data: new Date().toLocaleString('pt-BR')
-            };
+            // Desabilita o botão para evitar múltiplos envios
+            document.getElementById('btnNext').disabled = true;
+            document.getElementById('btnNext').textContent = 'Enviando...';
 
-            // Envia via Formspree (e-mail)
-            const enviarFormspree = fetch('https://formspree.io/f/mzebrreb', {
+            // Cria FormData (compatível com Formspree)
+            const formData = new FormData();
+            formData.append('nome', nome);
+            formData.append('email', email);
+            formData.append('whatsapp', whatsapp);
+            formData.append('estado', estado);
+            formData.append('segmentos', segmentos);
+            formData.append('faturamento', faturamento);
+            formData.append('data', new Date().toLocaleString('pt-BR'));
+
+            // Envia via Formspree (FormData funciona melhor em anúncios)
+            fetch('https://formspree.io/f/mzebrreb', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(emailData)
-            });
-
-            // Envia para a planilha do Google Sheets (via Apps Script)
-            // mode: 'no-cors' porque o Apps Script não devolve cabeçalhos CORS;
-            // não dá pra ler a resposta, mas o dado chega e é gravado na planilha.
-            const enviarPlanilha = fetch(GOOGLE_SHEETS_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify(emailData)
-            });
-
-            // Aguarda os dois envios (allSettled: mesmo que um falhe, o outro segue)
-            Promise.allSettled([enviarFormspree, enviarPlanilha]).then(() => {
-                // Track conversão no Facebook Pixel
-                fbq('track', 'Lead');
-
-                // Redireciona para página de obrigado
-                window.location.href = 'obrigado.html';
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Track conversão no Facebook Pixel PRIMEIRO
+                    fbq('track', 'Lead');
+                    
+                    // Aguarda um pouco para o Pixel registrar
+                    setTimeout(() => {
+                        // Redireciona para página de obrigado
+                        window.location.href = 'obrigado.html';
+                    }, 500);
+                } else {
+                    throw new Error('Erro no servidor');
+                }
+            })
+            .catch(err => {
+                console.error('Erro ao enviar:', err);
+                // Reabilita o botão em caso de erro
+                document.getElementById('btnNext').disabled = false;
+                document.getElementById('btnNext').textContent = 'Enviar ✉️';
+                alert('⚠️ Houve um erro ao enviar os dados. Tente novamente.');
             });
         }
 
